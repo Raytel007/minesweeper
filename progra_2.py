@@ -1,11 +1,7 @@
-		#cantidad de minas , si es multijugador o no
+"""		#cantidad de minas , si es multijugador o no
 def Partida(nivel, multi):
-	coordena = input(el mouse)
-	if self.activo:
-		if multi:
+	coordena = input("el mouse")
 			
-
-
 class cuadro(inicio):
 	def __init__(self, x, y):
 		self.x = x
@@ -14,12 +10,6 @@ class cuadro(inicio):
 		self.bandera = False 
 		self.mina = False 
 		self.minas_alrededor = 0
-	def ubicar_minas(dificultad): # creacion y ubicacion de la mina y matriz, esto no va en esta clase
-		if dificultad == 1:
-			ancho =  largo
-		
-		
-		
 		
 	def click(self, jugador):
 		if not self.activo:
@@ -29,4 +19,36 @@ class cuadro(inicio):
 				elif self.minas_alrededor:
 					return self.minas_alrededor
 				else:
-					def 
+					pass
+"""
+def ubicar_minas(): # creacion y ubicacion de la mina y matriz, esto no va en esta clas
+		nivel = [[8,8,10],[16,16,40],[16,30,99]]
+		dificultad = input("digite: 0 ")
+		while True:
+			try:
+				dificultad = int(dificultad)
+				break
+			except:
+				pass
+		if dificultad:
+			ancho,largo,minas = nivel[dificultad][0],nivel[dificultad][1],nivel[dificultad][2]
+		else:
+			matriz = []
+			while True:
+				ancho = input()
+				largo = input()
+				minas = input()
+				try:
+					ancho = int(ancho)
+					largo = int(largo)
+					minas = int(minas)
+					if ancho >= 5 and ancho <= 20 and largo >= 5 and largo <= 20 and minas >= 1 and minas < largo * ancho:
+						break
+				except:
+					pass
+		matriz = [[[]] * largo] * ancho
+		for x in range(ancho):
+			print(matriz[x])
+			
+		
+ubicar_minas()
