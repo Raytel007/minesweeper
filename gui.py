@@ -7,7 +7,7 @@ def listoCustom():
 
 def pedirCustom(key):
     global textA,textL,textM
-    tkinter.messagebox.showinfo("Custom","Choose the settings you want for your custom match")
+    tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
 
     containerCustom = Frame(root)
     containerCustom.grid(row=1)
@@ -26,7 +26,7 @@ def pedirCustom(key):
 
     readyButt.grid(row=3,column=0)
     labelAncho.grid()
-    entryAncho.grid(row=0, column=1)
+   entryAncho.grid(row=0, column=1)
     labelLargo.grid(row=1, column=0)
     entryLargo.grid(row=1, column=1)
     labelMinas.grid(row=2, column=0)
