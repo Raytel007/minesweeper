@@ -55,6 +55,7 @@ class cuadro(partida):
     def alrededor(self):
         arreglo = [-1,0,1]
         for x in arreglo:
+            pass
 
             #vecino = self.matriz[self.matriz(index(x) ]
 main = partida()
