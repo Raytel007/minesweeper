@@ -8,17 +8,17 @@ def pedirCustom(key):
    containerCustom = Frame(root)
    containerCustom.grid(row=1)
 
-   textA = int(StringVar())
+   textA = int(StringVar().get())
    labelAncho = Label(containerCustom, text="Width: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
    entryAncho = Entry(containerCustom, textvariable=textA)
-   textL = int(StringVar())
+   textL = int(StringVar().get())
    labelLargo = Label(containerCustom, text="Height: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
    entryLargo = Entry(containerCustom, textvariable=textL)
-   textM = int(StringVar())
+   textM = int(StringVar().get())
    labelMinas = Label(containerCustom, text="Mines: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
    entryMinas = Entry(containerCustom, textvariable=textM)
 
-   readyButt = Button(containerCustom, text="Ready", fg=mainFg, bg=mainBg, font=mainFont, width=mainWidth, command=lambda: practica_2.main.ubicar_minas(0,ancho=textA.get(),largo=textL.get(),minas=textM.get()))
+   readyButt = Button(containerCustom, text="Ready", fg=mainFg, bg=mainBg, font=mainFont, width=mainWidth, command=lambda: practica_2.main.ubicar_minas(0,ancho=textA,largo=textL,minas=textM)
 
    readyButt.grid(row=3,column=0)
    labelAncho.grid()
