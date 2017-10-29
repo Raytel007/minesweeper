@@ -21,34 +21,31 @@ class cuadro(inicio):
 				else:
 					pass
 """
-def ubicar_minas(): # creacion y ubicacion de la mina y matriz, esto no va en esta clas
-		nivel = [[8,8,10],[16,16,40],[16,30,99]]
-		dificultad = input("digite: 0 ")
-		while True:
-			try:
-				dificultad = int(dificultad)
-				break
-			except:
-				pass
-		if dificultad:
-			ancho,largo,minas = nivel[dificultad][0],nivel[dificultad][1],nivel[dificultad][2]
-		else:
-			matriz = []
-			while True:
-				ancho = input()
-				largo = input()
-				minas = input()
-				try:
-					ancho = int(ancho)
-					largo = int(largo)
-					minas = int(minas)
-					if ancho >= 5 and ancho <= 20 and largo >= 5 and largo <= 20 and minas >= 1 and minas < largo * ancho:
-						break
-				except:
-					pass
-		matriz = [[[]] * largo] * ancho
-		for x in range(ancho):
-			print(matriz[x])
-			
-		
-ubicar_minas()
+def ubicar_minas(dificultad): # creacion y ubicacion de la mina y matriz, esto no va en esta class
+#prsado = 0 #   1    ,     2    ,     3
+    nivel = [[8,8,10],[16,16,40],[16,30,99]]
+    #dificultad = input("digite: 0 ")
+    while True:
+        try:
+            dificultad = int(dificultad)
+            break
+        except:
+            pass
+    if dificultad:
+        ancho,largo,minas = nivel[dificultad - 1 ][0],nivel[dificultad - 1][1],nivel[dificultad - 1][2]
+    else:
+        while True:
+            ancho = input()
+            largo = input()
+            minas = input()
+            try:
+                ancho = int(ancho)
+                largo = int(largo)
+                minas = int(minas)
+                if ancho >= 5 and ancho <= 20 and largo >= 5 and largo <= 20 and minas >= 1 and minas < largo * ancho:
+                    break
+            except:
+                pass
+    matriz = [[[]] * largo] * ancho
+    for x in range(ancho):
+        print(matriz[x])
