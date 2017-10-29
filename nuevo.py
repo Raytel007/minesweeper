@@ -1,10 +1,7 @@
-def lamba(r, g):
-    yield 231
-y = lamba(3,4)
+class calses:
+    def ubi(self):
+        return "f"
 
+matriz = ["a","b","c"]
 
-
-def g(x):
-    yield from range(x, 0, -1)
-    yield from range(x)
-print(list(g(10)))
+ceros = list(map(lambda x:calses(), matriz))
