@@ -47,5 +47,5 @@ class cuadro(partida):
         else:
             self.bandera = not self.bandera
     def alrededor(self):
-
+        pass
 main = partida()
