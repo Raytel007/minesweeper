@@ -3,30 +3,31 @@ import progra_2
 import tkinter.messagebox
 
 def pedirCustom(key):
-   tkinter.messagebox.showinfo("Custom","Choose the settings you want for your custom match") 
+    tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
 
-   containerCustom = Frame(root)
-   containerCustom.grid(row=1)
+    containerCustom = Frame(root)
+    containerCustom.grid(row=1)
 
-   textA = int(StringVar().get())
-   labelAncho = Label(containerCustom, text="Width: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
-   entryAncho = Entry(containerCustom, textvariable=textA)
-   textL = int(StringVar().get())
-   labelLargo = Label(containerCustom, text="Height: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
-   entryLargo = Entry(containerCustom, textvariable=textL)
-   textM = int(StringVar().get())
-   labelMinas = Label(containerCustom, text="Mines: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
-   entryMinas = Entry(containerCustom, textvariable=textM)
+    textA = StringVar().get()
+    labelAncho = Label(containerCustom, text="Ancho: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
+    entryAncho = Entry(containerCustom, textvariable=textA)
+    textL = StringVar().get()
+    labelLargo = Label(containerCustom, text="Largo: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
+    entryLargo = Entry(containerCustom, textvariable=textL)
+    textM = StringVar().get()
+    labelMinas = Label(containerCustom, text="Minas: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
+    entryMinas = Entry(containerCustom, textvariable=textM)
 
-   readyButt = Button(containerCustom, text="Ready", fg=mainFg, bg=mainBg, font=mainFont, width=mainWidth, command=lambda: practica_2.main.ubicar_minas(0,ancho=textA,largo=textL,minas=textM)
+    readyButt = Button(containerCustom, text="Ok", fg=mainFg, bg=mainBg, font=mainFont, width=mainWidth,
+                      command=lambda: progra_2.main.ubicar_minas(0,ancho=textA,largo=textL,minas=textM))
 
-   readyButt.grid(row=3,column=0)
-   labelAncho.grid()
-   entryAncho.grid(row=0, column=1)
-   labelLargo.grid(row=1, column=0)
-   entryLargo.grid(row=1, column=1)
-   labelMinas.grid(row=2, column=0)
-   entryMinas.grid(row=2, column=1)
+    readyButt.grid(row=3,column=0)
+    labelAncho.grid(row = 0, column = 0)
+    entryAncho.grid(row=0, column=1)
+    labelLargo.grid(row=1, column=0)
+    entryLargo.grid(row=1, column=1)
+    labelMinas.grid(row=2, column=0)
+    entryMinas.grid(row=2, column=1)
 
    
 
