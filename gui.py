@@ -2,24 +2,27 @@ from tkinter import *
 import progra_2
 import tkinter.messagebox
 
+def listoCustom():
+        progra_2.main.ubicar_minas(0,ancho= int (textA.get()),largo=int(textL.get()),minas=int(textM.get()))
+
 def pedirCustom(key):
+    global textA,textL,textM
     tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
 
     containerCustom = Frame(root)
     containerCustom.grid(row=1)
 
-    textA = StringVar().get()
+    textA = StringVar()
     labelAncho = Label(containerCustom, text="Ancho: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
     entryAncho = Entry(containerCustom, textvariable=textA)
-    textL = StringVar().get()
+    textL = StringVar()
     labelLargo = Label(containerCustom, text="Largo: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
     entryLargo = Entry(containerCustom, textvariable=textL)
-    textM = StringVar().get()
+    textM = StringVar()
     labelMinas = Label(containerCustom, text="Minas: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
     entryMinas = Entry(containerCustom, textvariable=textM)
 
-    readyButt = Button(containerCustom, text="Ok", fg=mainFg, bg=mainBg, font=mainFont, width=mainWidth,
-                      command=lambda: progra_2.main.ubicar_minas(0,ancho=textA,largo=textL,minas=textM))
+    readyButt = Button(containerCustom, text="Ok", fg=mainFg, bg=mainBg, font=mainFont, width=mainWidth, command=listoCustom)#lambda: practica_2.main.ubicar_minas(0,ancho=textA,largo=textL,minas=textM)
 
     readyButt.grid(row=3,column=0)
     labelAncho.grid(row = 0, column = 0)

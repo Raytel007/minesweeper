@@ -23,6 +23,10 @@ class partida:
                 matriz[matriz.index(x)].mina = True
                 minas -= 1
         self.matriz = matriz
+        x = 0
+        while x < len(matriz):
+            print(matriz[x])
+            x += ancho
     def retornando(self):
         return self.matriz
 class cuadro(partida):
