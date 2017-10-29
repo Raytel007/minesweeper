@@ -49,5 +49,8 @@ class cuadro(partida):
         else:
             self.bandera = not self.bandera
     def alrededor(self):
-        pass
+        arreglo = [-1,0,1]
+        for x in arreglo:
+            pass
+            #vecino = self.matriz[self.matriz(index(x) ]
 main = partida()
