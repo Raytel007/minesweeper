@@ -4,6 +4,7 @@ import tkinter.messagebox
 
 def listoCustom():
         progra_2.main.ubicar_minas(0,ancho=textA.get(),largo=textL.get(),minas=textM.get())
+        listoCustom()
 
 def pedirCustom(key):
     global textA,textL,textM
