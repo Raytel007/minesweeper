@@ -5,10 +5,61 @@ class partida:
         self.lista = []
         self.largo = 0
 
-    def alrededor(self):
-        arreglo = [-1, 0, 1]
+    def alrededor_mina(self):
+                # [y, x]
+        arreglo = [[-1,-1],[-1,0],[-1,1],
+                   [0,-1],[0,0],[0,1],
+                   [1,-1],[1,0],[1,1]]
         for x in self.lista:
             coordenada = self.lista.index(x)
+<<<<<<< HEAD
+=======
+            alrededor = arreglo.copy()
+            if coordenada > len(self.lista) - self.largo:
+                alrededor.pop()
+                alrededor.pop()
+                alrededor.pop()
+                print("uno")
+            if coordenada <= self.largo:
+                alrededor.pop(0)
+                alrededor.pop(0)
+                alrededor.pop(0)
+                print("dos")
+
+            if coordenada % self.largo == 1:
+                try:
+                    alrededor.remove([0, 1])
+                except:
+                    print(1)
+
+                try:
+                    alrededor.remove([-1, 1])
+                except:
+                    print(2)
+
+                try:
+                    alrededor.remove([1, 1])
+                except:
+                    print(3)
+
+            if not coordenada % self.largo:
+                try:
+                    alrededor.remove([0, -1])
+                except:
+                    print(1)
+
+                try:
+                    alrededor.remove([-1, -1])
+                except:
+                    print(2)
+
+                try:
+                    alrededor.remove([1, -1])
+                except:
+                    print(3)
+            print("re",coordenada, alrededor)
+
+>>>>>>> f386b5122b0a6f3f8fd0cf76e5680f01770b71a4
 
     def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y lista, esto no va en esta class
         # prsado = 0 #   1    ,     2    ,     3
@@ -16,13 +67,22 @@ class partida:
 
         if dificultad:
             ancho, largo, minas = nivel[dificultad - 1][0], nivel[dificultad - 1][1], nivel[dificultad - 1][2]
+
         else:
             ancho = customizado["ancho"]
             largo = customizado["largo"]
             minas = customizado["minas"]
+<<<<<<< HEAD
         self.largo = largo
+=======
+            print("wsdw", customizado, largo, minas)
+        print("dw",largo)
+        print("dwfwf")
+        self.largo = largo
+        print("ultimo",self.largo)
+>>>>>>> f386b5122b0a6f3f8fd0cf76e5680f01770b71a4
         lista = [[]] * (largo * ancho)
-        lista = list(map(lambda x: cuadro(lista.index(x)), lista))
+        lista = list(map(lambda x: cuadro(lista.index(x)), lista))# pichudisima
 
         while minas:
             x = choice(lista)
@@ -60,4 +120,11 @@ class cuadro(partida):
             self.bandera = not self.bandera
 
             #vecino = self.lista[self.lista(index(x) ]
+
 main = partida()
+<<<<<<< HEAD
+=======
+main.ubicar_minas(1)
+print(main.retornando_lista())
+main.alrededor_mina()
+>>>>>>> f386b5122b0a6f3f8fd0cf76e5680f01770b71a4

@@ -12,6 +12,7 @@ def listoCustom():
             if objeto.mina:
                 minaButt = Button(mainFrame, width=2,height=2, bg="#FFFFFF")
                 minaButt.grid(row=rowVar(), column=columnVar())
+                minaButt.bind("<Button-1>",demostrar)
             else:
                 minaButt = Button(mainFrame, width=2,height=2, bg="#000000")
                 minaButt.grid(row=rowVar(), column=columnVar())
