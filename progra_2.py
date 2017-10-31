@@ -8,7 +8,7 @@ class partida:
         arreglo = [-1, 0, 1]
         for x in self.lista:
             coordenada = self.lista.index(x)
-            print(coordenada)
+            if 
 
     def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y lista, esto no va en esta class
         # prsado = 0 #   1    ,     2    ,     3
