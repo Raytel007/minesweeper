@@ -2,20 +2,44 @@ from tkinter import *
 import progra_2
 import tkinter.messagebox
 
+listaMinasObjetos = []#Contiene listas de cada cuadrito y su botón respectivo
+def demostrar(obj):
+   # print("q")
+   # print(listaMinasObjetos)
+    for x in listaMinasObjetos:
+        for y in listaMinasObjetos:
+            pass
+            #print(y)
+           # if y[1].mina:
+           #     print("si")
+    if obj.mina:
+        print("a")
+        for par in listaMinasObjetos:
+            for indice in par:
+                if indice == obj:
+                    par[0] = Button(mainFrame, width=2, height=2, bg="#FFFFFF")
+                
+
+
+class minasGUI:
+    def __init__(self,boton, mina):
+        self.boton = boton
+
+
 def listoCustom():
+        global listaMinasObjetos, mainFrame
+        
         progra_2.main.ubicar_minas(0,ancho= int (textA.get()),largo=int(textL.get()),minas=int(textM.get()))
         mainFrame = Frame(root)
         mainFrame.grid()
         for objeto in progra_2.main.lista:
-            rowVar = lambda: progra_2.main.lista.index(objeto)//progra_2.main.largo
-            columnVar = lambda: progra_2.main.lista.index(objeto)%progra_2.main.largo
-            if objeto.mina:
-                minaButt = Button(mainFrame, width=2,height=2, bg="#FFFFFF")
-                minaButt.grid(row=rowVar(), column=columnVar())
-                minaButt.bind("<Button-1>",demostrar)
-            else:
-                minaButt = Button(mainFrame, width=2,height=2, bg="#000000")
-                minaButt.grid(row=rowVar(), column=columnVar())
+            rowVar = progra_2.main.lista.index(objeto)//progra_2.main.largo#la fila
+            columnVar = progra_2.main.lista.index(objeto)%progra_2.main.largo#la columna
+        
+            listaMinasObjetos.append([Button(mainFrame, width=2,height=2, bg="#000000"), objeto]) 
+
+            listaMinasObjetos[-1][0].bind("<Button-1>",lambda x: demostrar(objeto))
+            listaMinasObjetos[-1][0].grid(row=rowVar, column=columnVar)
 
 def pedirCustom(key):
     global textA,textL,textM
@@ -81,6 +105,9 @@ menuFrame = Frame(root, bd = 10, relief="groove")
 OnePlayerL = Button(menuFrame, width=mainWidth,text="1-Player",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(1,False))
 TwoPlayerL = Button(menuFrame, width=mainWidth,text="2-Player",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,False))
 TwoPlayerM = Button(menuFrame, width=mainWidth,text="2-Player \nMultiplayer",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,True))
+
+
+
 
 menuFrame.grid(row=0,column=2,sticky="E")
 OnePlayerL.grid(row=0,column=0)

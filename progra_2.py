@@ -12,8 +12,6 @@ class partida:
                    [1,-1],[1,0],[1,1]]
         for x in self.lista:
             coordenada = self.lista.index(x)
-<<<<<<< HEAD
-=======
             alrededor = arreglo.copy()
             if coordenada > len(self.lista) - self.largo:
                 alrededor.pop()
@@ -59,7 +57,6 @@ class partida:
                     print(3)
             print("re",coordenada, alrededor)
 
->>>>>>> f386b5122b0a6f3f8fd0cf76e5680f01770b71a4
 
     def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y lista, esto no va en esta class
         # prsado = 0 #   1    ,     2    ,     3
@@ -72,15 +69,7 @@ class partida:
             ancho = customizado["ancho"]
             largo = customizado["largo"]
             minas = customizado["minas"]
-<<<<<<< HEAD
         self.largo = largo
-=======
-            print("wsdw", customizado, largo, minas)
-        print("dw",largo)
-        print("dwfwf")
-        self.largo = largo
-        print("ultimo",self.largo)
->>>>>>> f386b5122b0a6f3f8fd0cf76e5680f01770b71a4
         lista = [[]] * (largo * ancho)
         lista = list(map(lambda x: cuadro(lista.index(x)), lista))# pichudisima
 
@@ -122,9 +111,4 @@ class cuadro(partida):
             #vecino = self.lista[self.lista(index(x) ]
 
 main = partida()
-<<<<<<< HEAD
-=======
-main.ubicar_minas(1)
-print(main.retornando_lista())
-main.alrededor_mina()
->>>>>>> f386b5122b0a6f3f8fd0cf76e5680f01770b71a4
+
