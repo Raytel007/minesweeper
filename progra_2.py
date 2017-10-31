@@ -1,13 +1,19 @@
 from random import *
-        #cantida minas , si es multijugador o no
 
 class partida:
     def __init__(self):
         self.matriz = []
+
+    def alrededor(self):
+        arreglo = [-1, 0, 1]
+        for x in self.matriz:
+            coordenada = self.matriz.index(x)
+            print(coordenada)
+
     def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y matriz, esto no va en esta class
         # prsado = 0 #   1    ,     2    ,     3
         nivel = [[8, 8, 10], [16, 16, 40], [16, 30, 99]]
-        print(dificultad)
+
         if dificultad:
             ancho, largo, minas = nivel[dificultad - 1][0], nivel[dificultad - 1][1], nivel[dificultad - 1][2]
         else:
@@ -17,18 +23,17 @@ class partida:
             print("wsdw", customizado, largo, minas)
         matriz = [[]] * (largo * ancho)
         matriz = list(map(lambda x: cuadro(matriz.index(x)), matriz))
+
         while minas:
             x = choice(matriz)
             if not x.mina:
                 matriz[matriz.index(x)].mina = True
                 minas -= 1
         self.matriz = matriz
-        x = 0
-        while x < len(matriz):
-            print(matriz[x])
-            x += ancho
+
     def retornando(self):
         return self.matriz
+
 class cuadro(partida):
     def __init__(self, x):
         self.x = x
@@ -52,10 +57,8 @@ class cuadro(partida):
                         self.activo = True
         else:
             self.bandera = not self.bandera
-    def alrededor(self):
-        arreglo = [-1,0,1]
-        for x in arreglo:
-            pass
 
             #vecino = self.matriz[self.matriz(index(x) ]
 main = partida()
+main.ubicar_minas(1)
+main.alrededor()
