@@ -2,15 +2,15 @@ from random import *
 
 class partida:
     def __init__(self):
-        self.matriz = []
+        self.lista = []
 
     def alrededor(self):
         arreglo = [-1, 0, 1]
-        for x in self.matriz:
-            coordenada = self.matriz.index(x)
+        for x in self.lista:
+            coordenada = self.lista.index(x)
             print(coordenada)
 
-    def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y matriz, esto no va en esta class
+    def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y lista, esto no va en esta class
         # prsado = 0 #   1    ,     2    ,     3
         nivel = [[8, 8, 10], [16, 16, 40], [16, 30, 99]]
 
@@ -21,18 +21,19 @@ class partida:
             largo = customizado["largo"]
             minas = customizado["minas"]
             print("wsdw", customizado, largo, minas)
-        matriz = [[]] * (largo * ancho)
-        matriz = list(map(lambda x: cuadro(matriz.index(x)), matriz))
+        lista = [[]] * (largo * ancho)
+        lista = list(map(lambda x: cuadro(lista.index(x)), lista))
 
         while minas:
-            x = choice(matriz)
+            x = choice(lista)
             if not x.mina:
-                matriz[matriz.index(x)].mina = True
+                lista[lista.index(x)].mina = True
                 minas -= 1
-        self.matriz = matriz
+        self.lista = lista
 
-    def retornando(self):
-        return self.matriz
+    def retornando_lista(self):
+        return self.lista
+
 
 class cuadro(partida):
     def __init__(self, x):
@@ -58,7 +59,7 @@ class cuadro(partida):
         else:
             self.bandera = not self.bandera
 
-            #vecino = self.matriz[self.matriz(index(x) ]
+            #vecino = self.lista[self.lista(index(x) ]
 main = partida()
 main.ubicar_minas(1)
-main.alrededor()
+print(main.retornando_lista())
