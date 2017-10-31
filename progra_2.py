@@ -1,5 +1,11 @@
 from random import *
-
+"""
+0, 1, 2, 3, 4, 
+5, 6, 7, 8, 9,
+10,11,12,13,14,
+15,16,17,18,19,
+20,21,22,23,24]
+""""
 class partida:
     def __init__(self):
         self.lista = []
@@ -7,15 +13,11 @@ class partida:
 
     def alrededor_mina(self):
                 # [y, x]
-        arreglo = [[-1,-1],[-1,0],[-1,1],
-                   [0,-1],[0,0],[0,1],
-                   [1,-1],[1,0],[1,1]]
+        arreglo = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]
         for x in self.lista:
             coordenada = self.lista.index(x)
-<<<<<<< HEAD
-=======
             alrededor = arreglo.copy()
-            if coordenada > len(self.lista) - self.largo:
+            if coordenada >= len(self.lista) - self.largo:
                 alrededor.pop()
                 alrededor.pop()
                 alrededor.pop()
@@ -26,7 +28,7 @@ class partida:
                 alrededor.pop(0)
                 print("dos")
 
-            if coordenada % self.largo == 1:
+            if coordenada % self.largo == self.largo - 1:
                 try:
                     alrededor.remove([0, 1])
                 except:
@@ -42,7 +44,7 @@ class partida:
                 except:
                     print(3)
 
-            if not coordenada % self.largo:
+            if not coordenada % self.largo and coordenada != 0:
                 try:
                     alrededor.remove([0, -1])
                 except:
@@ -58,9 +60,6 @@ class partida:
                 except:
                     print(3)
             print("re",coordenada, alrededor)
-
->>>>>>> f386b5122b0a6f3f8fd0cf76e5680f01770b71a4
-
     def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y lista, esto no va en esta class
         # prsado = 0 #   1    ,     2    ,     3
         nivel = [[8, 8, 10], [16, 16, 40], [16, 30, 99]]
@@ -72,15 +71,7 @@ class partida:
             ancho = customizado["ancho"]
             largo = customizado["largo"]
             minas = customizado["minas"]
-<<<<<<< HEAD
         self.largo = largo
-=======
-            print("wsdw", customizado, largo, minas)
-        print("dw",largo)
-        print("dwfwf")
-        self.largo = largo
-        print("ultimo",self.largo)
->>>>>>> f386b5122b0a6f3f8fd0cf76e5680f01770b71a4
         lista = [[]] * (largo * ancho)
         lista = list(map(lambda x: cuadro(lista.index(x)), lista))# pichudisima
 
@@ -111,7 +102,7 @@ class cuadro(partida):
             if not self.activo:
                 if not self.bandera:
                     if self.mina:
-                        return "boom bitch"
+                        return "boom"
                     elif self.minas_alrededor:
                         return self.minas_alrededor
                     else:
@@ -122,9 +113,6 @@ class cuadro(partida):
             #vecino = self.lista[self.lista(index(x) ]
 
 main = partida()
-<<<<<<< HEAD
-=======
 main.ubicar_minas(1)
 print(main.retornando_lista())
 main.alrededor_mina()
->>>>>>> f386b5122b0a6f3f8fd0cf76e5680f01770b71a4
