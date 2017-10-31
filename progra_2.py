@@ -3,12 +3,12 @@ from random import *
 class partida:
     def __init__(self):
         self.lista = []
+        self.largo = 0
 
     def alrededor(self):
         arreglo = [-1, 0, 1]
         for x in self.lista:
             coordenada = self.lista.index(x)
-            if 
 
     def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y lista, esto no va en esta class
         # prsado = 0 #   1    ,     2    ,     3
@@ -20,7 +20,7 @@ class partida:
             ancho = customizado["ancho"]
             largo = customizado["largo"]
             minas = customizado["minas"]
-            print("wsdw", customizado, largo, minas)
+        self.largo = largo
         lista = [[]] * (largo * ancho)
         lista = list(map(lambda x: cuadro(lista.index(x)), lista))
 
@@ -61,5 +61,3 @@ class cuadro(partida):
 
             #vecino = self.lista[self.lista(index(x) ]
 main = partida()
-main.ubicar_minas(1)
-print(main.retornando_lista())

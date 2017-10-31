@@ -4,6 +4,17 @@ import tkinter.messagebox
 
 def listoCustom():
         progra_2.main.ubicar_minas(0,ancho= int (textA.get()),largo=int(textL.get()),minas=int(textM.get()))
+        mainFrame = Frame(root)
+        mainFrame.grid()
+        for objeto in progra_2.main.lista:
+            rowVar = lambda: progra_2.main.lista.index(objeto)//progra_2.main.largo
+            columnVar = lambda: progra_2.main.lista.index(objeto)%progra_2.main.largo
+            if objeto.mina:
+                minaButt = Button(mainFrame, width=2,height=2, bg="#FFFFFF")
+                minaButt.grid(row=rowVar(), column=columnVar())
+            else:
+                minaButt = Button(mainFrame, width=2,height=2, bg="#000000")
+                minaButt.grid(row=rowVar(), column=columnVar())
 
 def pedirCustom(key):
     global textA,textL,textM
@@ -22,7 +33,7 @@ def pedirCustom(key):
     labelMinas = Label(containerCustom, text="Minas: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
     entryMinas = Entry(containerCustom, textvariable=textM)
 
-    readyButt = Button(containerCustom, text="Ok", fg=mainFg, bg=mainBg, font=mainFont, width=mainWidth, command=listoCustom)#lambda: practica_2.main.ubicar_minas(0,ancho=textA,largo=textL,minas=textM)
+    readyButt = Button(containerCustom, text="Ok", fg=mainFg, bg=mainBg, font=mainFont, width=mainWidth, command=listoCustom)
 
     readyButt.grid(row=3,column=0)
     labelAncho.grid(row = 0, column = 0)
@@ -60,7 +71,7 @@ root = Tk()
 
 root.title("Minesweeper")
 root.configure(background="#555555")
-root.geometry("400x400")
+#root.geometry("400x400")
 mainFont = ("Times", 11, "bold")
 mainFg = "black"
 mainBg = "#FFFFFF"
