@@ -1,6 +1,8 @@
 from tkinter import *
 import progra_2
 import tkinter.messagebox
+def demostrar():
+    pass
 
 listaMinasObjetos = []#Contiene listas de cada cuadrito y su botón respectivo
 def demostrar(obj):
@@ -43,30 +45,30 @@ def listoCustom():
 
 def pedirCustom(key):
     global textA,textL,textM
-    tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
+    #tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
 
     containerCustom = Frame(root)
     containerCustom.grid(row=1)
 
     textA = StringVar()
-    labelAncho = Label(containerCustom, text="Ancho: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
-    entryAncho = Entry(containerCustom, textvariable=textA)
+    labelAncho = Label(containerCustom, text = "Ancho: ", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth)
+    entryAncho = Entry(containerCustom, textvariable = textA)
     textL = StringVar()
-    labelLargo = Label(containerCustom, text="Largo: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
-    entryLargo = Entry(containerCustom, textvariable=textL)
+    labelLargo = Label(containerCustom, text = "Largo: ", fg = mainFg, bg = mainBg, font=mainFont, width = mainWidth)
+    entryLargo = Entry(containerCustom, textvariable = textL)
     textM = StringVar()
-    labelMinas = Label(containerCustom, text="Minas: ", fg=mainFg, bg=mainBg, font=mainFont, width = mainWidth)
+    labelMinas = Label(containerCustom, text = "Minas: ", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth)
     entryMinas = Entry(containerCustom, textvariable=textM)
 
-    readyButt = Button(containerCustom, text="Ok", fg=mainFg, bg=mainBg, font=mainFont, width=mainWidth, command=listoCustom)
+    readyButt = Button(containerCustom, text = "Ok", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = listoCustom)
 
-    readyButt.grid(row=3,column=0)
+    readyButt.grid(row = 3, column = 0)
     labelAncho.grid(row = 0, column = 0)
-    entryAncho.grid(row=0, column=1)
-    labelLargo.grid(row=1, column=0)
-    entryLargo.grid(row=1, column=1)
-    labelMinas.grid(row=2, column=0)
-    entryMinas.grid(row=2, column=1)
+    entryAncho.grid(row = 0, column = 1)
+    labelLargo.grid(row = 1, column = 0)
+    entryLargo.grid(row = 1, column = 1)
+    labelMinas.grid(row = 2, column = 0)
+    entryMinas.grid(row = 2, column = 1)
 
    
 
@@ -103,7 +105,7 @@ mainBg = "#FFFFFF"
 mainWidth = 16 #ancho de botones
 menuFrame = Frame(root, bd = 10, relief="groove")
 OnePlayerL = Button(menuFrame, width=mainWidth,text="1-Player",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(1,False))
-TwoPlayerL = Button(menuFrame, width=mainWidth,text="2-Player",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,False))
+TwoPlayerL = Button(menuFrame, width=mainWidth,text="2-Player",fg= mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,False))
 TwoPlayerM = Button(menuFrame, width=mainWidth,text="2-Player \nMultiplayer",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,True))
 
 
