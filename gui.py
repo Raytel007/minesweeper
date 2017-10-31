@@ -4,7 +4,7 @@ import tkinter.messagebox
 
 def listoCustom():
         progra_2.main.ubicar_minas(0,ancho= int (textA.get()),largo=int(textL.get()),minas=int(textM.get()))
-        
+
 def pedirCustom(key):
     global textA,textL,textM
     tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
