@@ -12,13 +12,14 @@ def demostrar(obj,x,y):
             #print(y)
            # if y[1].mina:
            #     print("si")
+
+    print(progra_2.main.lista[x * progra_2.mina.+ y].minas_alrededor)
     if obj.mina:
         #print(x," ",y)
         for par in listaMinasObjetos:
             #print("2")
             if par.cuadro== obj:
-                #print("aaa")
-                progra_2.main.lista[progra_2.main.lista[progra_2.main.lista.index(par.cuadro)].click(True)]
+                progra_2.main.lista[progra_2.main.lista.index(par.cuadro)].click(True)
                 par.boton= Button(mainFrame, width=2, height=2, bg="#FFFFFF")
                 par.boton.grid(row=x,column=y)
                 
@@ -49,7 +50,7 @@ def listo_minas():
             #listaMinasObjetos[-1].boton.bind("<Button-1>",lambda x: demostrar(objeto))
             listaMinasObjetos[-1].setupObj()
             #listaMinasObjetos[-1].boton.grid(row=rowVar, column=columnVar)
-
+        progra_2.main.lista[0].alrededor_mina()
 def pedirCustom(key):
     global textA,textL,textM
     #tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
