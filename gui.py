@@ -1,32 +1,38 @@
 from tkinter import *
 import progra_2
 import tkinter.messagebox
-def demostrar():
-    pass
 
 listaMinasObjetos = []#Contiene listas de cada cuadrito y su botón respectivo
-def demostrar(obj):
-   # print("q")
-   # print(listaMinasObjetos)
-    for x in listaMinasObjetos:
-        for y in listaMinasObjetos:
-            pass
+def demostrar(obj,x,y):
+   # print(x)
+    #print(listaMinasObjetos)
+    #for x in listaMinasObjetos:
+       # for y in listaMinasObjetos:
+            #pass
             #print(y)
            # if y[1].mina:
            #     print("si")
     if obj.mina:
-        print("a")
+        print(x," ",y)
         for par in listaMinasObjetos:
-            for indice in par:
-                if indice == obj:
-                    par[0] = Button(mainFrame, width=2, height=2, bg="#FFFFFF")
+            print("2")
+            if par.cuadro== obj:
+                print("aaa")
+                par.boton= Button(mainFrame, width=2, height=2, bg="#FFFFFF")
+                par.boton.grid(row=x,column=y)
                 
 
 
 class minasGUI:
-    def __init__(self,boton, mina):
+    def __init__(self,boton, cuadro, x, y):
+        self.x = x
+        self.y = y
         self.boton = boton
-
+        self.cuadro = cuadro
+    def setupObj(self):
+        print(self.x," ",self.y)
+        self.boton.bind("<Button-1>", lambda x: demostrar(self.cuadro,self.x,self.y))
+        self.boton.grid(row=self.x, column=self.y)
 
 def listoCustom():
         global listaMinasObjetos, mainFrame
@@ -37,11 +43,12 @@ def listoCustom():
         for objeto in progra_2.main.lista:
             rowVar = progra_2.main.lista.index(objeto)//progra_2.main.largo#la fila
             columnVar = progra_2.main.lista.index(objeto)%progra_2.main.largo#la columna
-        
-            listaMinasObjetos.append([Button(mainFrame, width=2,height=2, bg="#000000"), objeto]) 
+            #print(rowVar) 
+            listaMinasObjetos.append(minasGUI(Button(mainFrame, width=2,height=2, bg="#000000"), objeto, rowVar, columnVar) )
 
-            listaMinasObjetos[-1][0].bind("<Button-1>",lambda x: demostrar(objeto))
-            listaMinasObjetos[-1][0].grid(row=rowVar, column=columnVar)
+            #listaMinasObjetos[-1].boton.bind("<Button-1>",lambda x: demostrar(objeto))
+            listaMinasObjetos[-1].setupObj()
+            #listaMinasObjetos[-1].boton.grid(row=rowVar, column=columnVar)
 
 def pedirCustom(key):
     global textA,textL,textM
