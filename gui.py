@@ -9,6 +9,9 @@ def color(num):
     return valores[num]
 
 def eval(valor,obj):
+    print("valor",obj.x,valor)
+    if valor == -5:
+        pass
     if valor == -1:
         tkinter.messagebox.showwarning("Noob", "Por lo menos sabes jugar?")
     elif valor in [1,2,3,4,5,6,7,8]:
@@ -22,6 +25,19 @@ def eval(valor,obj):
             if x.cuadro == obj:
                x.cuadro = Button(mainFrame, bg="#FFFFFF", width=2, height=2 )
                x.cuadro.grid(row=x.x,column=x.y)
+    elif not valor:
+        for x in listaMinasObjetos:
+            if x.cuadro == obj:
+               x.cuadro = Button(mainFrame, fg="black", bg="#123456", width=2, height=2, font=mainFont)
+               x.cuadro.grid(row=x.x,column=x.y)
+        print(obj.coordenadas_alrededor)
+        for y in obj.coordenadas_alrededor:
+            #progra_2.main.lista[main.lista.index(self.x) + y[0] * progra_2.main.largo + y[1]]).click(True)
+            coordenada = obj.x + y[0] * progra_2.main.largo + y[1]
+            print("cordenada",coordenada)
+            if not progra_2.main.lista[coordenada].activo:
+                eval(progra_2.main.lista[coordenada].click(True),progra_2.main.lista[coordenada])
+
 def demostrar(obj,x,y):
 
     print(progra_2.main.lista)
@@ -104,7 +120,7 @@ def listo_minas(custom ,dif):
        # global containerCustom, container
         #containerCustom.destroy() 
         #container.destroy()
-            
+           
 def pedirCustom(key):
     global textA,textL,textM, containerCustom
     #tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")

@@ -46,7 +46,6 @@ class cuadro(partida):
         return self.minas_alrededor
     def alrededor_mina(self):
 
-        print("x")
         arreglo = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
 
         for x in main.lista:
@@ -80,33 +79,26 @@ class cuadro(partida):
                     alrededor.remove([1, -1])
                 except:
                     pass
+            main.lista[main.lista.index(x)].coordenadas_alrededor = alrededor
             for y in alrededor:
                 if main.lista[main.lista.index(x) + y[0] * main.largo + y[1]].mina:
                     main.lista[main.lista.index(x)].minas_alrededor += 1
-                    main.lista[main.lista.index(x)].coordenadas_alrededor = alrededor
+
     def click(self, click_izquierda):
         #derecho activa casilla
         #izquierdo pone bandera
         if click_izquierda:
-            print("click izquierda")
             if not self.activo:
-                print("activo")
                 if not self.bandera:
-                    print("bandera")
                     self.activo = True
                     if not self.mina:
-                        if not self.minas_alrededor:
-                            print(self.coordenadas_alrededor)
-                            for y in self.coordenadas_alrededor:
-                                click(main.lista[main.lista.index(self.x) + y[0] * main.largo + y[1]])
-                        print("minas alrededor")
-                        return self.minas_alrededor
-                    else:
-                        val = -1
-                        print("string: ",val)
-                        return val 
+                        if self.minas_alrededor:
+                            return self.minas_alrededor
+                        return 0
+                    return -1
+                return -5
+            return -5
         else:
-            print("click derecha")
             self.bandera = not self.bandera
             if self.bandera:
                 return -3
