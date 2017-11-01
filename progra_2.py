@@ -22,7 +22,8 @@ class partida:
         self.largo = largo
         lista = [[]] * (largo * ancho)
         lista = list(map(lambda x: cuadro(lista.index(x)), lista))# pichudisima
-
+        for t in range(len(lista)- 1):
+            lista[t].x = t
         while minas:
             x = choice(lista)
             if not x.mina:
@@ -36,6 +37,7 @@ class partida:
 
 class cuadro(partida):
     def __init__(self, x):
+        print("innit",x)
         self.x = x
         self.activo =  False # si es True se muestra al usuario, independientemente si es bandera/ bomba / vacio o un numero
         self.bandera = False 
@@ -102,13 +104,13 @@ class cuadro(partida):
         #vecino = self.lista[self.lista(index(x) ]
 
 main = partida()
-"""
 main.ubicar_minas(1)
 main.lista[0].alrededor_mina()
 xr = 0
 while xr < 64:
+    print("cs",xr)
     print(main.lista[xr].x, " ")
-    if  xr % 64:
+    if  xr % 8  == 7 :
         print("\n")
     xr += 1
 def f():
@@ -116,5 +118,3 @@ def f():
         a = int(input("efef"))
         main.lista[a].click(True)
 f()
-
-"""
