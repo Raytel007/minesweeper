@@ -22,7 +22,6 @@ def demostrar(obj,x,y):
                 par.boton.grid(row=x,column=y)
                 
 
-
 class minasGUI:
     def __init__(self,boton, cuadro, x, y):
         self.x = x
