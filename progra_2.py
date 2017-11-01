@@ -94,12 +94,16 @@ class cuadro(partida):
                         if not self.minas_alrededor:
                             for y in self.coordenadas_alrededor:
                                 click(main.lista[main.lista.index(self.x) + y[0] * main.largo + y[1]])
+                        return self.minas_alrededor
                     else:
                         print("si sirve noob")
                         return True
+
         else:
             self.bandera = not self.bandera
-
+            if self.bandera:
+                return -3
+            return -2
         #vecino = self.lista[self.lista(index(x) ]
 
 main = partida()
