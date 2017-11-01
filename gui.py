@@ -1,26 +1,18 @@
 from tkinter import *
 import progra_2
 import tkinter.messagebox
-def demostrar():
-    pass
 
 listaMinasObjetos = []#Contiene listas de cada cuadrito y su botón respectivo
 def demostrar(obj):
-   # print("q")
-   # print(listaMinasObjetos)
-    for x in listaMinasObjetos:
-        for y in listaMinasObjetos:
-            pass
-            #print(y)
-           # if y[1].mina:
-           #     print("si")
+    # print("q")
+    print(listaMinasObjetos)
+    print(obj)
     if obj.mina:
-        print("a")
         for par in listaMinasObjetos:
             for indice in par:
                 if indice == obj:
                     par[0] = Button(mainFrame, width=2, height=2, bg="#FFFFFF")
-                
+
 
 
 class minasGUI:
@@ -37,12 +29,13 @@ def listoCustom():
         for objeto in progra_2.main.lista:
             rowVar = progra_2.main.lista.index(objeto)//progra_2.main.largo#la fila
             columnVar = progra_2.main.lista.index(objeto)%progra_2.main.largo#la columna
-        
-            listaMinasObjetos.append([Button(mainFrame, width=2,height=2, bg="#000000"), objeto]) 
+            listaMinasObjetos.append([Button(mainFrame, width=2,height=2, bg="#000000", command = lambda : demostrar(objeto)), objeto])
 
-            listaMinasObjetos[-1][0].bind("<Button-1>",lambda x: demostrar(objeto))
+ #$           listaMinasObjetos[-1][0].bind("<Button-1>", lambda : demostrar(objeto))
             listaMinasObjetos[-1][0].grid(row=rowVar, column=columnVar)
-
+            print(listaMinasObjetos[-1][1].mina)
+        for y in listaMinasObjetos:
+            print("22323",y[1].mina)
 def pedirCustom(key):
     global textA,textL,textM
     #tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
