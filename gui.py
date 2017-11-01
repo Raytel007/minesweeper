@@ -20,22 +20,24 @@ class minasGUI:
         self.boton = boton
 
 
-def listoCustom():
+def listo_minas(custom):
         global listaMinasObjetos, mainFrame
-        
-        progra_2.main.ubicar_minas(0,ancho= int (textA.get()),largo=int(textL.get()),minas=int(textM.get()))
+
         mainFrame = Frame(root)
         mainFrame.grid()
         for objeto in progra_2.main.lista:
             rowVar = progra_2.main.lista.index(objeto)//progra_2.main.largo#la fila
             columnVar = progra_2.main.lista.index(objeto)%progra_2.main.largo#la columna
-            listaMinasObjetos.append([Button(mainFrame, width=2,height=2, bg="#000000", command = lambda : demostrar(objeto)), objeto])
-
- #$           listaMinasObjetos[-1][0].bind("<Button-1>", lambda : demostrar(objeto))
+            listaMinasObjetos.append([Button(mainFrame, width=2,height=2, bg="#000000", command =  demostrar(objeto)), objeto])
+            listaMinasObjetos[-1][0].bind("<Button-1>", demostrar(objeto))
             listaMinasObjetos[-1][0].grid(row=rowVar, column=columnVar)
             print(listaMinasObjetos[-1][1].mina)
         for y in listaMinasObjetos:
             print("22323",y[1].mina)
+        progra_2.main.lista[0].alrededor_mina()
+        for x in progra_2.main.lista:
+            print(x.minas_alrededor)
+
 def pedirCustom(key):
     global textA,textL,textM
     #tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
@@ -52,9 +54,12 @@ def pedirCustom(key):
     textM = StringVar()
     labelMinas = Label(containerCustom, text = "Minas: ", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth)
     entryMinas = Entry(containerCustom, textvariable=textM)
-
-    readyButt = Button(containerCustom, text = "Ok", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = listoCustom)
-
+    global a
+    a = 0
+    readyButt = Button(containerCustom, text = "Ok", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command =  troll)
+    if a:
+        valores = []
+        valores
     readyButt.grid(row = 3, column = 0)
     labelAncho.grid(row = 0, column = 0)
     entryAncho.grid(row = 0, column = 1)
@@ -67,19 +72,20 @@ def pedirCustom(key):
 
 def Game(players, multiplayer):
     menuFrame.destroy()
-    container = Frame(root, bd=10, relief="groove")# freme kja :v
 
+    container = Frame(root, bd=10, relief="groove")# freme kja :v
     #8x8
-    mode1Butt = Button(container, text = "8x8", fg = mainFg,bg = mainBg, font = mainFont, width = mainWidth, command= lambda: progra_2.main.ubicar_minas(1))
+    mode1Butt = Button(container, text = "8x8", fg = mainFg,bg = mainBg, font = mainFont, width = mainWidth, command = lambda: progra_2.main.ubicar_minas(1))
     #16x16
-    mode2Butt = Button(container, text="16x16", fg=mainFg,bg=mainBg,font = mainFont, width = mainWidth, command= lambda: progra_2.main.ubicar_minas(2))
+    mode2Butt = Button(container, text = "16x16", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = lambda: progra_2.main.ubicar_minas(2))
     #30x16
-    mode3Butt = Button(container, text="30x16", fg=mainFg,bg=mainBg,font=mainFont,width=mainWidth, command= lambda: progra_2.main.ubicar_minas(3))
+    mode3Butt = Button(container, text = "30x16", fg = mainFg,bg =  mainBg, font = mainFont, width = mainWidth, command = lambda: progra_2.main.ubicar_minas(3))
     #Custom
-    mode4Butt = Button(container, text="Custom", fg=mainFg,bg=mainBg,font=mainFont,width=mainWidth)
+    mode4Butt = Button(container, text = "Custom", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = lambda: progra_2.main.ubicar_minas(0,))
 
     mode4Butt.bind("<Button-1>", pedirCustom)
-
+    if custom:
+        progra_2.main.ubicar_minas(0, ancho=int(textA.get()), largo=int(textL.get()), minas=int(textM.get()))
 
     container.grid()
     mode1Butt.grid(row=0,column=0)
@@ -102,7 +108,9 @@ TwoPlayerL = Button(menuFrame, width=mainWidth,text="2-Player",fg= mainFg,bg=mai
 TwoPlayerM = Button(menuFrame, width=mainWidth,text="2-Player \nMultiplayer",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,True))
 
 
-
+def troll():
+    global a
+    a += 1
 
 menuFrame.grid(row=0,column=2,sticky="E")
 OnePlayerL.grid(row=0,column=0)
