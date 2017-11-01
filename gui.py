@@ -6,6 +6,9 @@ listaMinasObjetos = []#Contiene listas de cada cuadrito y su botón respectivo
 
 
 def eval(valor,obj):
+    print("valor",obj.x,valor)
+    if valor == -5:
+        pass
     if valor == -1:
         tkinter.messagebox.showwarning("Noob", "Por lo menos sabes jugar?")
         quit()
@@ -14,6 +17,19 @@ def eval(valor,obj):
             if x.cuadro == obj:
                x.cuadro = Button(mainFrame, text=valor, fg="black", bg="#FFFFFF", width=2, height=2, font=mainFont)
                x.cuadro.grid(row=x.x,column=x.y)
+    elif not valor:
+        for x in listaMinasObjetos:
+            if x.cuadro == obj:
+               x.cuadro = Button(mainFrame, fg="black", bg="#123456", width=2, height=2, font=mainFont)
+               x.cuadro.grid(row=x.x,column=x.y)
+        print(obj.coordenadas_alrededor)
+        for y in obj.coordenadas_alrededor:
+            #progra_2.main.lista[main.lista.index(self.x) + y[0] * progra_2.main.largo + y[1]]).click(True)
+            coordenada = obj.x + y[0] * progra_2.main.largo + y[1]
+            print("cordenada",coordenada)
+            if not progra_2.main.lista[coordenada].activo:
+                eval(progra_2.main.lista[coordenada].click(True),progra_2.main.lista[coordenada])
+
 def demostrar(obj,x,y):
 
     valorDelClick = progra_2.main.lista[progra_2.main.lista.index(obj)].click(True)
@@ -69,7 +85,7 @@ def listo_minas():
             #listaMinasObjetos[-1].boton.bind("<Button-1>",lambda x: demostrar(objeto))
             listaMinasObjetos[-1].setupObj()
             #listaMinasObjetos[-1].boton.grid(row=rowVar, column=columnVar)
-            
+            global container
             containerCustom.destroy() 
             container.destroy()
             
@@ -104,6 +120,7 @@ def pedirCustom(key):
 
 def Game(players, multiplayer):
     menuFrame.destroy()
+    global container
     container = Frame(root, bd=10, relief="groove")# freme kja :v
 
     #8x8
