@@ -25,42 +25,23 @@ def eval(valor,obj):
             if x.cuadro == obj:
                x.cuadro = Button(mainFrame, fg="black", bg="#123456", width=1, height=1 )
                x.cuadro.grid(row=x.x,column=x.y)
-        print(obj.coordenadas_alrededor)
         for y in obj.coordenadas_alrededor:
             #progra_2.main.lista[main.lista.index(self.x) + y[0] * progra_2.main.largo + y[1]]).click(True)
             coordenada = obj.x + y[0] * progra_2.main.largo + y[1]
-            print("cordenada",coordenada)
             if not progra_2.main.lista[coordenada].activo:
-                eval(progra_2.main.lista[coordenada].click(True),progra_2.main.lista[coordenada])
+                s = progra_2.main.lista[coordenada].click(True)
+                print("sds",s)
+                eval(s,progra_2.main.lista[coordenada])
 
 def demostrar(obj,x,y):
 
-    print(progra_2.main.lista)
-    print(progra_2.main.lista[progra_2.main.lista.index(obj)])
     valorDelClick = progra_2.main.lista[progra_2.main.lista.index(obj)].click(True)
-   # print(x)
-    #print(listaMinasObjetos)
-    #for x in listaMinasObjetos:
-       # for y in listaMinasObjetos:
-            #pass
-            #print(y)
-           # if y[1].mina:
-           #     print("si")
-
-    #print(progra_2.main.lista[x * progra_2.mina.y].minas_alrededor)
     if obj.mina:
-        #print(x," ",y)
-
         for par in listaMinasObjetos:
-            #print("2")
             if par.cuadro== obj:
-
                 progra_2.main.lista[progra_2.main.lista.index(par.cuadro)].click(True)
                 par.boton= Label(mainFrame, image=minaPNG)
                 par.boton.grid(row=x,column=y)
-
-   # progra_2.main.lista[progra_2.main.lista.index(obj)].activado = True
-    print(valorDelClick)
     eval(valorDelClick,obj) 
 
 class minasGUI:
