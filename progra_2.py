@@ -84,15 +84,6 @@ class cuadro(partida):
                     main.lista[main.lista.index(x)].minas_alrededor += 1
                     main.lista[main.lista.index(x)].coordenadas_alrededor = alrededor
 
-
-    """
-    self.x = x
-        self.activo =  False # si es True se muestra al usuario, independientemente si es bandera/ bomba / vacio o un numero
-        self.bandera = False 
-        self.mina = False 
-        self.minas_alrededor = 0
-        self.coordenadas_alrededor = [] # esta va a tener las instrucciones para ir a los vecinos del cuadro
-    """
     def click(self, click):
         #derecho activa casilla
         #izquierdo pone bandera
