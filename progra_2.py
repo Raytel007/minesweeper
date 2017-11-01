@@ -12,7 +12,6 @@ class partida:
         self.largo = 0
     def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y lista, esto no va en esta class
         nivel = [[8,8 , 10], [16, 16, 40], [16, 30, 99]]
-        print("ded")
         if dificultad:
             ancho, largo, minas = nivel[dificultad - 1][0], nivel[dificultad - 1][1], nivel[dificultad - 1][2]
         else:
@@ -37,8 +36,7 @@ class partida:
 
 class cuadro(partida):
     def __init__(self, x):
-        print("innit",x)
-        self.x = x
+        self.x = None 
         self.activo =  False # si es True se muestra al usuario, independientemente si es bandera/ bomba / vacio o un numero
         self.bandera = False 
         self.mina = False 
@@ -48,6 +46,8 @@ class cuadro(partida):
     def retornar_unos_y_ceros(self):
         return self.minas_alrededor
     def alrededor_mina(self):
+
+        print("x")
         arreglo = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
 
         for x in main.lista:
@@ -85,36 +85,31 @@ class cuadro(partida):
                 if main.lista[main.lista.index(x) + y[0] * main.largo + y[1]].mina:
                     main.lista[main.lista.index(x)].minas_alrededor += 1
                     main.lista[main.lista.index(x)].coordenadas_alrededor = alrededor
-    def click(self, click_derecho ):
+    def click(self, click_izquierda):
         #derecho activa casilla
         #izquierdo pone bandera
-        if click_derecho :
+        if click_izquierda:
+            print("click izquierda")
             if not self.activo:
+                print("activo")
                 if not self.bandera:
+                    print("bandera")
                     self.activo = True
                     if not self.mina:
                         if not self.minas_alrededor:
+                            print(self.coordenadas_alrededor)
                             for y in self.coordenadas_alrededor:
                                 click(main.lista[main.lista.index(self.x) + y[0] * main.largo + y[1]])
+                        print("minas alrededor")
+                        return self.minas_alrededor
                     else:
-                        return True
+                        val = -1
+                        print("string: ",val)
+                        return val 
         else:
+            print("click derecha")
             self.bandera = not self.bandera
 
         #vecino = self.lista[self.lista(index(x) ]
 
 main = partida()
-main.ubicar_minas(1)
-main.lista[0].alrededor_mina()
-xr = 0
-while xr < 64:
-    print("cs",xr)
-    print(main.lista[xr].x, " ")
-    if  xr % 8  == 7 :
-        print("\n")
-    xr += 1
-def f():
-    while True:
-        a = int(input("efef"))
-        main.lista[a].click(True)
-f()

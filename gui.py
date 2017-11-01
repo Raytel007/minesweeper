@@ -1,9 +1,22 @@
 from tkinter import *
 import progra_2
 import tkinter.messagebox
-
 listaMinasObjetos = []#Contiene listas de cada cuadrito y su botón respectivo
+
+
+
+def eval(valor,obj):
+    if valor == -1:
+        tkinter.messagebox.showwarning("Noob", "Por lo menos sabes jugar?")
+        quit()
+    elif valor in [1,2,3,4,5,6,7,8]:
+        for x in listaMinasObjetos:
+            if x.cuadro == obj:
+               x.cuadro = Button(mainFrame, text=valor, fg="black", bg="#FFFFFF", width=2, height=2, font=mainFont)
+               x.cuadro.grid(row=x.x,column=x.y)
 def demostrar(obj,x,y):
+
+    valorDelClick = progra_2.main.lista[progra_2.main.lista.index(obj)].click(True)
    # print(x)
     #print(listaMinasObjetos)
     #for x in listaMinasObjetos:
@@ -14,14 +27,19 @@ def demostrar(obj,x,y):
            #     print("si")
     if obj.mina:
         #print(x," ",y)
+
         for par in listaMinasObjetos:
             #print("2")
             if par.cuadro== obj:
                 #print("aaa")
-                progra_2.main.lista[progra_2.main.lista[progra_2.main.lista.index(par.cuadro)].click(True)]
+                #valorDelClick = progra_2.main.lista[progra_2.main.lista.index(par.cuadro)].click(True)
+                print(valorDelClick)
                 par.boton= Button(mainFrame, width=2, height=2, bg="#FFFFFF")
                 par.boton.grid(row=x,column=y)
-                
+
+   # progra_2.main.lista[progra_2.main.lista.index(obj)].activado = True
+    print(valorDelClick)
+    eval(valorDelClick,obj) 
 
 class minasGUI:
     def __init__(self,boton, cuadro, x, y):
@@ -30,14 +48,15 @@ class minasGUI:
         self.boton = boton
         self.cuadro = cuadro
     def setupObj(self):
-        print(self.x," ",self.y)
         self.boton.bind("<Button-1>", lambda x: demostrar(self.cuadro,self.x,self.y))
         self.boton.grid(row=self.x, column=self.y)
 
 def listo_minas():
         global listaMinasObjetos, mainFrame
-        
         progra_2.main.ubicar_minas(0,ancho= int (textA.get()),largo=int(textL.get()),minas=int(textM.get()))
+
+        
+        progra_2.main.lista[0].alrededor_mina()
         mainFrame = Frame(root)
         mainFrame.grid()
         for objeto in progra_2.main.lista:
@@ -49,9 +68,12 @@ def listo_minas():
             #listaMinasObjetos[-1].boton.bind("<Button-1>",lambda x: demostrar(objeto))
             listaMinasObjetos[-1].setupObj()
             #listaMinasObjetos[-1].boton.grid(row=rowVar, column=columnVar)
-
+            
+            containerCustom.destroy() 
+            container.destroy()
+            
 def pedirCustom(key):
-    global textA,textL,textM
+    global textA,textL,textM, containerCustom
     #tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
 
     containerCustom = Frame(root)
