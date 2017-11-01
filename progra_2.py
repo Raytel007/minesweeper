@@ -20,7 +20,7 @@ class partida:
             minas = customizado["minas"]
         self.largo = largo
         lista = [[]] * (largo * ancho)
-        lista = list(map(lambda x: cuadro(lista.index(x)), lista))# pichudisima
+        lista = list(map(lambda x: cuadro(), lista))# pichudisima
         for t in range(len(lista)- 1):
             lista[t].x = t
         while minas:
@@ -33,10 +33,9 @@ class partida:
     def retornando_lista(self):
         return self.lista
 
-
 class cuadro(partida):
-    def __init__(self, x):
-        self.x = None 
+    def __init__(self):
+        self.x = None
         self.activo =  False # si es True se muestra al usuario, independientemente si es bandera/ bomba / vacio o un numero
         self.bandera = False 
         self.mina = False 
@@ -109,7 +108,9 @@ class cuadro(partida):
         else:
             print("click derecha")
             self.bandera = not self.bandera
-
+            if self.bandera:
+                return -3
+            return -2
         #vecino = self.lista[self.lista(index(x) ]
 
 main = partida()
