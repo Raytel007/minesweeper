@@ -1,15 +1,10 @@
 from random import *
-"""
-0, 1, 2, 3, 4, 
-5, 6, 7, 8, 9,
-10,11,12,13,14,
-15,16,17,18,19,
-20,21,22,23,24]
-"""
+
 class partida:
     def __init__(self):
         self.lista = []
         self.largo = 0
+
     def ubicar_minas(self,dificultad, **customizado):  # creacion y ubicacion de la mina y lista, esto no va en esta class
         nivel = [[8,8 , 10], [16, 16, 40], [16, 30, 99]]
         if dificultad:
@@ -21,6 +16,7 @@ class partida:
         self.largo = largo
         lista = [[]] * (largo * ancho)
         lista = list(map(lambda x: cuadro(), lista))# pichudisima
+
         for t in range(len(lista)- 1):
             lista[t].x = t
         while minas:
@@ -42,12 +38,12 @@ class cuadro(partida):
         self.minas_alrededor = 0
         self.coordenadas_alrededor = [] # esta va a tener las instrucciones para ir a los vecinos del cuadro
         super().__init__()
+
     def retornar_unos_y_ceros(self):
         return self.minas_alrededor
+
     def alrededor_mina(self):
-
         arreglo = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
-
         for x in main.lista:
             coordenada = main.lista.index(x)
             alrededor = arreglo.copy()
@@ -103,6 +99,4 @@ class cuadro(partida):
             if self.bandera:
                 return -3
             return -2
-        #vecino = self.lista[self.lista(index(x) ]
-
 main = partida()
