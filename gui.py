@@ -13,11 +13,12 @@ def demostrar(obj,x,y):
            # if y[1].mina:
            #     print("si")
     if obj.mina:
-        print(x," ",y)
+        #print(x," ",y)
         for par in listaMinasObjetos:
-            print("2")
+            #print("2")
             if par.cuadro== obj:
-                print("aaa")
+                #print("aaa")
+                progra_2.main.lista[progra_2.main.lista[progra_2.main.lista.index(par.cuadro)].click(True)]
                 par.boton= Button(mainFrame, width=2, height=2, bg="#FFFFFF")
                 par.boton.grid(row=x,column=y)
                 
@@ -34,21 +35,21 @@ class minasGUI:
         self.boton.grid(row=self.x, column=self.y)
 
 def listo_minas():
-    print("efe")
-    global listaMinasObjetos, mainFrame
-    progra_2.main.ubicar_minas(0, ancho=int(textA.get()), largo=int(textL.get()), minas=int(textM.get()))
-    mainFrame = Frame(root)
-    mainFrame.grid()
-    for objeto in progra_2.main.lista:
-        rowVar = progra_2.main.lista.index(objeto)//progra_2.main.largo#la fila
-        columnVar = progra_2.main.lista.index(objeto)%progra_2.main.largo#la columna
+        global listaMinasObjetos, mainFrame
+        
+        progra_2.main.ubicar_minas(0,ancho= int (textA.get()),largo=int(textL.get()),minas=int(textM.get()))
+        mainFrame = Frame(root)
+        mainFrame.grid()
+        for objeto in progra_2.main.lista:
+            rowVar = progra_2.main.lista.index(objeto)//progra_2.main.largo#la fila
+            columnVar = progra_2.main.lista.index(objeto)%progra_2.main.largo#la columna
+            #print(rowVar) 
+            listaMinasObjetos.append(minasGUI(Button(mainFrame, width=2,height=2, bg="#000000"), objeto, rowVar, columnVar) )
 
-        #print(rowVar)
-        listaMinasObjetos.append(minasGUI(Button(mainFrame, width=2,height=2, bg="#000000"), objeto, rowVar, columnVar) )
+            #listaMinasObjetos[-1].boton.bind("<Button-1>",lambda x: demostrar(objeto))
+            listaMinasObjetos[-1].setupObj()
+            #listaMinasObjetos[-1].boton.grid(row=rowVar, column=columnVar)
 
-        #listaMinasObjetos[-1].boton.bind("<Button-1>",lambda x: demostrar(objeto))
-        listaMinasObjetos[-1].setupObj()
-        #listaMinasObjetos[-1].boton.grid(row=rowVar, column=columnVar)
 def pedirCustom(key):
     global textA,textL,textM
     #tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
@@ -65,8 +66,8 @@ def pedirCustom(key):
     textM = StringVar()
     labelMinas = Label(containerCustom, text = "Minas: ", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth)
     entryMinas = Entry(containerCustom, textvariable=textM)
-    readyButt = Button(containerCustom, text = "Ok", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = listo_minas)
 
+    readyButt = Button(containerCustom, text = "Ok", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = listo_minas)
 
     readyButt.grid(row = 3, column = 0)
     labelAncho.grid(row = 0, column = 0)
@@ -80,18 +81,20 @@ def pedirCustom(key):
 
 def Game(players, multiplayer):
     menuFrame.destroy()
-
     container = Frame(root, bd=10, relief="groove")# freme kja :v
+
     #8x8
-    mode1Butt = Button(container, text = "8x8", fg = mainFg,bg = mainBg, font = mainFont, width = mainWidth, command = lambda: progra_2.main.ubicar_minas(1))
+    mode1Butt = Button(container, text = "8x8", fg = mainFg,bg = mainBg, font = mainFont, width = mainWidth, command= lambda: progra_2.main.ubicar_minas(1))
     #16x16
-    mode2Butt = Button(container, text = "16x16", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = lambda: progra_2.main.ubicar_minas(2))
+    mode2Butt = Button(container, text="16x16", fg=mainFg,bg=mainBg,font = mainFont, width = mainWidth, command= lambda: progra_2.main.ubicar_minas(2))
     #30x16
-    mode3Butt = Button(container, text = "30x16", fg = mainFg,bg =  mainBg, font = mainFont, width = mainWidth, command = lambda: progra_2.main.ubicar_minas(3))
+    mode3Butt = Button(container, text="30x16", fg=mainFg,bg=mainBg,font=mainFont,width=mainWidth, command= lambda: progra_2.main.ubicar_minas(3))
     #Custom
-    mode4Butt = Button(container, text = "Custom", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth)
+    mode4Butt = Button(container, text="Custom", fg=mainFg,bg=mainBg,font=mainFont,width=mainWidth)
 
     mode4Butt.bind("<Button-1>", pedirCustom)
+
+
     container.grid()
     mode1Butt.grid(row=0,column=0)
     mode2Butt.grid(row=0,column=1)
@@ -111,6 +114,8 @@ menuFrame = Frame(root, bd = 10, relief="groove")
 OnePlayerL = Button(menuFrame, width=mainWidth,text="1-Player",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(1,False))
 TwoPlayerL = Button(menuFrame, width=mainWidth,text="2-Player",fg= mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,False))
 TwoPlayerM = Button(menuFrame, width=mainWidth,text="2-Player \nMultiplayer",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,True))
+
+
 
 
 menuFrame.grid(row=0,column=2,sticky="E")
