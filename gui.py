@@ -18,17 +18,12 @@ def eval(valor,obj):
         for x in listaMinasObjetos:
             if x.cuadro == obj:
                fgColor = color(valor)
-               x.cuadro = Button(mainFrame, text=valor, fg=fgColor ,bg="#FFFFFF", width=2, height=2)
-               x.cuadro.grid(row=x.x,column=x.y)
-    elif valor == 0 or valor == None:
-        for x in listaMinasObjetos:
-            if x.cuadro == obj:
-               x.cuadro = Button(mainFrame, bg="#FFFFFF", width=2, height=2 )
+               x.cuadro = Button(mainFrame, text=valor, fg=fgColor ,bg="#FFFFFF", width=1, height=1)
                x.cuadro.grid(row=x.x,column=x.y)
     elif not valor:
         for x in listaMinasObjetos:
             if x.cuadro == obj:
-               x.cuadro = Button(mainFrame, fg="black", bg="#123456", width=2, height=2, font=mainFont)
+               x.cuadro = Button(mainFrame, fg="black", bg="#123456", width=1, height=1 )
                x.cuadro.grid(row=x.x,column=x.y)
         print(obj.coordenadas_alrededor)
         for y in obj.coordenadas_alrededor:
@@ -84,6 +79,14 @@ def listo_minas(custom ,dif):
         mainFrame = Frame(root)
         mainFrame.grid()
         if custom:
+            try:
+                int(textA.get())
+                int(textL.get()) 
+                int(text.M.get())
+            except:
+                tkinter.messagebox.showwarning("Error","Deben ser numeros y enteros")
+                return
+                
             if int(textA.get()) < 3:
                 tkinter.messagebox.showwarning("Error","Ancho debe ser mayor o igual a 3")
                 return
@@ -103,23 +106,28 @@ def listo_minas(custom ,dif):
                 tkinter.messagebox.showwarning("Error", "Deben haber menos minas que cuadritos")
                 return
             progra_2.main.ubicar_minas(0,ancho= int (textA.get()),largo=int(textL.get()),minas=int(textM.get()))
-
+            reiniciar = Label(root,image=reiniciarIcon)
+            reiniciar.grid(row=0,column=0)
         
         else:
+            reiniciar = Label(root,image=reiniciarIcon)
+            reiniciar.grid(row=0,column=0)
             progra_2.main.ubicar_minas(dif)
         progra_2.main.lista[0].alrededor_mina()
         for objeto in progra_2.main.lista:
                 rowVar = progra_2.main.lista.index(objeto)//progra_2.main.largo#la fila
                 columnVar = progra_2.main.lista.index(objeto)%progra_2.main.largo#la columna
                 #print(rowVar) 
-                listaMinasObjetos.append(minasGUI(Button(mainFrame, highlightcolor="#000000", width=2,height=2, bg="#000000"), objeto, rowVar, columnVar) )
+                listaMinasObjetos.append(minasGUI(Button(mainFrame, width=1,height=1, bg="#000000"), objeto, rowVar, columnVar) )
 
                 #listaMinasObjetos[-1].boton.bind("<Button-1>",lambda x: demostrar(objeto))
                 listaMinasObjetos[-1].setupObj()
                 #listaMinasObjetos[-1].boton.grid(row=rowVar, column=columnVar)
-       # global containerCustom, container
-        #containerCustom.destroy() 
-        #container.destroy()
+        try:
+            containerCustom.destroy() 
+        except:
+            pass
+        container.destroy()
            
 def pedirCustom(key):
     global textA,textL,textM, containerCustom
@@ -194,9 +202,11 @@ OnePlayerL = Button(menuFrame, width=mainWidth,text="1-Player",fg=mainFg,bg=main
 TwoPlayerL = Button(menuFrame, width=mainWidth,text="2-Player",fg= mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,False))
 TwoPlayerM = Button(menuFrame, width=mainWidth,text="2-Player \nMultiplayer",fg=mainFg,bg=mainBg,font=mainFont,command=lambda: Game(2,True))
 minaPNG = PhotoImage(file="./mina.png")
-minaPNG = minaPNG.zoom(4)
-minaPNG = minaPNG.subsample(17)
-
+minaPNG = minaPNG.zoom(3)
+minaPNG = minaPNG.subsample(18)
+reiniciarIcon = PhotoImage(file="./reiniciar.png")
+reiniciarIcon = reiniciarIcon.zoom(1)
+reiniciarIcon = reiniciarIcon.subsample(20)
 
 menuFrame.grid(row=0,column=2,sticky="E")
 OnePlayerL.grid(row=0,column=0)
