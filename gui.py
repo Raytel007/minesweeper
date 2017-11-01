@@ -33,7 +33,7 @@ class minasGUI:
         self.boton.bind("<Button-1>", lambda x: demostrar(self.cuadro,self.x,self.y))
         self.boton.grid(row=self.x, column=self.y)
 
-def listoMinas():
+def listo_minas():
         global listaMinasObjetos, mainFrame
         
         progra_2.main.ubicar_minas(0,ancho= int (textA.get()),largo=int(textL.get()),minas=int(textM.get()))
@@ -66,7 +66,7 @@ def pedirCustom(key):
     labelMinas = Label(containerCustom, text = "Minas: ", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth)
     entryMinas = Entry(containerCustom, textvariable=textM)
 
-    readyButt = Button(containerCustom, text = "Ok", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = listoMinas)
+    readyButt = Button(containerCustom, text = "Ok", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = listo_minas)
 
     readyButt.grid(row = 3, column = 0)
     labelAncho.grid(row = 0, column = 0)
