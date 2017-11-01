@@ -83,11 +83,10 @@ class cuadro(partida):
                 if main.lista[main.lista.index(x) + y[0] * main.largo + y[1]].mina:
                     main.lista[main.lista.index(x)].minas_alrededor += 1
                     main.lista[main.lista.index(x)].coordenadas_alrededor = alrededor
-
-    def click(self, click):
+    def click(self, click_derecho ):
         #derecho activa casilla
         #izquierdo pone bandera
-        if click:
+        if click_derecho :
             if not self.activo:
                 if not self.bandera:
                     self.activo = True
@@ -103,4 +102,19 @@ class cuadro(partida):
         #vecino = self.lista[self.lista(index(x) ]
 
 main = partida()
+"""
+main.ubicar_minas(1)
+main.lista[0].alrededor_mina()
+xr = 0
+while xr < 64:
+    print(main.lista[xr].x, " ")
+    if  xr % 64:
+        print("\n")
+    xr += 1
+def f():
+    while True:
+        a = int(input("efef"))
+        main.lista[a].click(True)
+f()
 
+"""

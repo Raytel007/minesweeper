@@ -92,7 +92,6 @@ def Game(players, multiplayer):
     mode4Butt = Button(container, text = "Custom", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth)
 
     mode4Butt.bind("<Button-1>", pedirCustom)
-    print("d")
     container.grid()
     mode1Butt.grid(row=0,column=0)
     mode2Butt.grid(row=0,column=1)
