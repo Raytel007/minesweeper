@@ -3,22 +3,35 @@ import progra_2
 import tkinter.messagebox
 
 listaMinasObjetos = []#Contiene listas de cada cuadrito y su botón respectivo
-def demostrar(obj):
-    # print("q")
-    print(listaMinasObjetos)
-    print(obj)
+def demostrar(obj,x,y):
+   # print(x)
+    #print(listaMinasObjetos)
+    #for x in listaMinasObjetos:
+       # for y in listaMinasObjetos:
+            #pass
+            #print(y)
+           # if y[1].mina:
+           #     print("si")
     if obj.mina:
+        print(x," ",y)
         for par in listaMinasObjetos:
-            for indice in par:
-                if indice == obj:
-                    par[0] = Button(mainFrame, width=2, height=2, bg="#FFFFFF")
-
-
+            print("2")
+            if par.cuadro== obj:
+                print("aaa")
+                par.boton= Button(mainFrame, width=2, height=2, bg="#FFFFFF")
+                par.boton.grid(row=x,column=y)
+                
 
 class minasGUI:
-    def __init__(self,boton, mina):
+    def __init__(self,boton, cuadro, x, y):
+        self.x = x
+        self.y = y
         self.boton = boton
-
+        self.cuadro = cuadro
+    def setupObj(self):
+        print(self.x," ",self.y)
+        self.boton.bind("<Button-1>", lambda x: demostrar(self.cuadro,self.x,self.y))
+        self.boton.grid(row=self.x, column=self.y)
 
 def listo_minas(custom):
         global listaMinasObjetos, mainFrame
@@ -28,16 +41,13 @@ def listo_minas(custom):
         for objeto in progra_2.main.lista:
             rowVar = progra_2.main.lista.index(objeto)//progra_2.main.largo#la fila
             columnVar = progra_2.main.lista.index(objeto)%progra_2.main.largo#la columna
-            listaMinasObjetos.append([Button(mainFrame, width=2,height=2, bg="#000000", command =  demostrar(objeto)), objeto])
-            listaMinasObjetos[-1][0].bind("<Button-1>", demostrar(objeto))
-            listaMinasObjetos[-1][0].grid(row=rowVar, column=columnVar)
-            print(listaMinasObjetos[-1][1].mina)
-        for y in listaMinasObjetos:
-            print("22323",y[1].mina)
-        progra_2.main.lista[0].alrededor_mina()
-        for x in progra_2.main.lista:
-            print(x.minas_alrededor)
 
+            #print(rowVar) 
+            listaMinasObjetos.append(minasGUI(Button(mainFrame, width=2,height=2, bg="#000000"), objeto, rowVar, columnVar) )
+
+            #listaMinasObjetos[-1].boton.bind("<Button-1>",lambda x: demostrar(objeto))
+            listaMinasObjetos[-1].setupObj()
+            #listaMinasObjetos[-1].boton.grid(row=rowVar, column=columnVar)
 def pedirCustom(key):
     global textA,textL,textM
     #tkinter.messagebox.showinfo("personalizado", "personalizado, por favor escriba las caracteristicas del juego")
@@ -54,12 +64,9 @@ def pedirCustom(key):
     textM = StringVar()
     labelMinas = Label(containerCustom, text = "Minas: ", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth)
     entryMinas = Entry(containerCustom, textvariable=textM)
-    global a
-    a = 0
-    readyButt = Button(containerCustom, text = "Ok", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command =  troll)
-    if a:
-        valores = []
-        valores
+    readyButt = Button(containerCustom, text = "Ok", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth)
+
+
     readyButt.grid(row = 3, column = 0)
     labelAncho.grid(row = 0, column = 0)
     entryAncho.grid(row = 0, column = 1)
@@ -84,8 +91,6 @@ def Game(players, multiplayer):
     mode4Butt = Button(container, text = "Custom", fg = mainFg, bg = mainBg, font = mainFont, width = mainWidth, command = lambda: progra_2.main.ubicar_minas(0,))
 
     mode4Butt.bind("<Button-1>", pedirCustom)
-    if custom:
-        progra_2.main.ubicar_minas(0, ancho=int(textA.get()), largo=int(textL.get()), minas=int(textM.get()))
 
     container.grid()
     mode1Butt.grid(row=0,column=0)
