@@ -13,11 +13,12 @@ def demostrar(obj,x,y):
            # if y[1].mina:
            #     print("si")
     if obj.mina:
-        print(x," ",y)
+        #print(x," ",y)
         for par in listaMinasObjetos:
-            print("2")
+            #print("2")
             if par.cuadro== obj:
-                print("aaa")
+                #print("aaa")
+                progra_2.main.lista[progra_2.main.lista[progra_2.main.lista.index(par.cuadro)].click(True)]
                 par.boton= Button(mainFrame, width=2, height=2, bg="#FFFFFF")
                 par.boton.grid(row=x,column=y)
                 
